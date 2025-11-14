@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光棍节快乐！🎊</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Marker Felt', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff4d4f' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            padding: 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(45deg, rgba(255,77,79,0.05), rgba(255,77,79,0.05) 10px, rgba(255,77,79,0.1) 10px, rgba(255,77,79,0.1) 20px);
+            z-index: -1;
+            transform: rotate(-5deg);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff4d4f;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px #ffec3d;
+            animation: bounce 2s infinite;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ff7a45;
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #ff4d4f;
+            font-size: 32px;
+            margin: 30px 0 20px;
+            border-bottom: 3px dashed #ff7a45;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        h2::after {
+            content: "💔";
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #292f36;
+        }
+
+        .joke-section {
+            background-color: #fff2f0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 3px dotted #ffccc7;
+            position: relative;
+        }
+
+        .joke-section::after {
+            content: "👻 单身狗出没！";
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 18px;
+            background-color: #fff2f0;
+            padding: 0 10px;
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+
+        .single-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+            justify-items: center;
+        }
+
+        .single-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #ffccc7;
+            max-width: 500px;
+        }
+
+        .single-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: #ff4d4f;
+        }
+
+        .single-photo {
+            width: 100%;
+            height: auto;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .single-photo img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .single-photo::before {
+            content: "💔 单身贵族 ";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 16px;
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+
+        .single-name {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .single-bio {
+            text-align: center;
+            margin-top: 8px;
+            color: #ff7a45;
+            font-style: italic;
+            font-size: 18px;
+        }
+
+        .single-status {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+
+        .interactive-section {
+            background-color: #fff7e6;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px solid #ffc966;
+        }
+
+        /* 答题测试改进样式 - 现在用于弹窗内部 */
+        .single-test {
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #ffc966;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .single-test:hover {
+            box-shadow: 0 5px 15px rgba(255, 201, 102, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .test-question {
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #d46b08;
+            font-size: 18px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .test-question::before {
+            content: '❓';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .test-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .test-option {
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #ddd;
+            background-color: #fff;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .test-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 201, 102, 0.3), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .test-option:hover {
+            background-color: #fff7e6;
+            border-color: #ffc966;
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(255, 201, 102, 0.2);
+        }
+
+        .test-option:hover::before {
+            left: 100%;
+        }
+
+        .test-option.selected {
+            background-color: #fff1f0;
+            border-color: #ff4d4f;
+            color: #cf1322;
+            font-weight: bold;
+        }
+
+        .result-box {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: #f6ffed;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 3px solid #b7eb8f;
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .result-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #b7eb8f, #52c41a, #b7eb8f);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .result-box h3 {
+            color: #52c41a;
+            margin-bottom: 15px;
+            font-size: 24px;
+            animation: bounceLight 1.5s infinite;
+        }
+
+        @keyframes bounceLight {
+            0%, 20%, 50%, 80%, 100% { transform: scale(1); }
+            40% { transform: scale(1.05); }
+            60% { transform: scale(1.02); }
+        }
+
+        .result-emoji {
+            font-size: 48px;
+            margin: 15px 0;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 领奖环节改进样式 */
+        .lucky-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #ff4d4f;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .lucky-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            z-index: -1;
+        }
+
+        .lucky-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        .lucky-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 77, 79, 0.4);
+        }
+
+        .lucky-button:active {
+            transform: scale(0.95);
+        }
+
+        /* 奖品盒子改进样式 */
+        .prize-box {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background-color: #fff7e6;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 3px dashed #ffc966;
+            position: relative;
+            overflow: hidden;
+            animation: prizeAppear 0.6s ease-out;
+        }
+
+        @keyframes prizeAppear {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .prize-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .prize-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(255, 201, 102, 0.1), rgba(255, 201, 102, 0.1) 10px, rgba(255, 201, 102, 0.2) 10px, rgba(255, 201, 102, 0.2) 20px);
+            z-index: 1;
+        }
+
+        .prize-box h3 {
+            color: #d46b08;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 2px 2px 0px rgba(255, 201, 102, 0.3);
+        }
+
+        /* 视频播放区域 */
+        .video-section {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        .video-caption {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* 单身调侃区域 */
+        .tease-section {
+            display: none;
+            background-color: #fff2f0;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px solid #ffccc7;
+            position: relative;
+        }
+
+        .tease-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .tease-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffccc7' fill-opacity='0.1'%3E%3Cpath d='M12 0h18v6h6v6h-6v18h-6v6h-6v-6H0V18h6V6h6V0zm12 6h-6v6h6v6h6v6h-6v6h-6v-6H6v-6h6v-6h6V6zm-6 12h-6v6h6v6h6v-6h6v-6h-6v-6h-6v6zm12-6v6h-6v-6h6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        /* 颁奖环节样式 */
+        .award-section {
+            background-color: #f6ffed;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px solid #b7eb8f;
+            position: relative;
+        }
+
+        .award-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b7eb8f' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        .award-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #52c41a;
+            font-size: 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .award-category {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px dashed #b7eb8f;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .award-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .award-category h3 {
+            color: #d46b08;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .award-winner {
+            font-weight: bold;
+            color: #ff4d4f;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* 恶作剧元素 */
+        .mischief-element {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* 彩屑容器 */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+        }
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #ff4d4f;
+            transform: rotate(90deg);
+        }
+
+        /* 触发弹窗的按钮 */
+        .open-modal-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(24, 144, 255, 0.3);
+        }
+
+        .open-modal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(24, 144, 255, 0.4);
+        }
+
+        /* 动画效果 */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .single-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 隐藏挑战按钮样式 */
+        .hidden-challenge-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            background-color: transparent;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.1;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .hidden-challenge-button:hover {
+            opacity: 0.5;
+            transform: scale(1.5);
+        }
+
+        /* 表白挑战弹窗样式 */
+        .love-challenge-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 138, 128, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .love-challenge-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.5s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .love-challenge-content h2 {
+            color: #ff4d4f;
+            font-size: 28px;
+            margin-bottom: 20px;
+            position: relative;
+            border-bottom: none;
+        }
+
+        .love-challenge-content h2::after {
+            content: '💘';
+            position: absolute;
+            right: 0;
+            top: 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        .love-message-input {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #ffc966;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: none;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .love-message-input:focus {
+            outline: none;
+            border-color: #ff4d4f;
+            box-shadow: 0 0 10px rgba(255, 77, 79, 0.2);
+        }
+
+        .submit-love-button {
+            background-color: #ff4d4f;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-love-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 77, 79, 0.4);
+        }
+
+        .submit-love-button:active {
+            transform: scale(0.95);
+        }
+
+        .love-success-message {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(82, 196, 26, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .love-success-content {
+            background-color: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: bounceIn 0.8s ease;
+        }
+
+        .love-success-content h2 {
+            color: #52c41a;
+            font-size: 32px;
+            margin-bottom: 20px;
+            border-bottom: none;
+        }
+
+        .love-success-content .success-emoji {
+            font-size: 80px;
+            margin: 30px 0;
+            animation: spin 3s linear infinite;
+        }
+
+        .love-success-content p {
+            font-size: 20px;
+            color: #52c41a;
+            font-weight: bold;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<div id="confetti"></div>
+
+<div class="container">
+    <h1>光棍节快乐！🎉</h1>
+    <div class="subtitle">嘲笑单身狗特别版 🐶💔</div>
+
+    <div class="joke-section">
+        <h2>光棍节生存指南 📜</h2>
+        <p>亲爱的单身朋友们，一年一度的光棍节又到了！为了帮助你们顺利度过这一天，我们精心准备了这份「光棍节生存指南」：</p>
+        <p>1. <strong>早上醒来第一件事</strong> - 打开手机，关闭所有秀恩爱的朋友圈提醒！</p>
+        <p>2. <strong>出门前请做好心理准备</strong> - 餐厅会有情侣套餐，电影院会有情侣座，连奶茶店都有「第二杯半价」！</p>
+        <p>3. <strong>避免去这些地方</strong> - 民政局、婚纱店、电影院最后一排...</p>
+        <p>4. <strong>必备技能</strong> - 学会对所有秀恩爱的行为说：「呵呵，我单身我骄傲！」</p>
+    </div>
+
+    <h2>单身狗名人堂 📸</h2>
+    <p>欢迎来到我们的「单身狗名人堂」！这里展示了我们身边最著名的「单身贵族」，点击照片了解他的「光荣事迹」：</p>
+
+    <div class="single-gallery">
+        <!-- 单身朋友照片展示 -->
+        <div class="single-card">
+            <div class="single-photo" onclick="showSingleStory('单萌 - 连续18年获得「最佳单身狗」称号！曾创下365天不出门的记录！\n\n特长：\n- 王者荣耀单排钻石选手\n- 外卖月消费超过5000元\n- 能一口气看完三部爱情电影而面不改色\n\n单身宣言：「爱情诚可贵，自由价更高！」🐶')">
+                <!-- 完整展示照片 -->
+                <img src="单萌/3.jpg" alt="单身贵族单萌">
+            </div>
+            <div class="single-name">单萌</div>
+            <div class="single-bio">单身年限: 18年 | 年龄: 18岁</div>
+            <div class="single-status">💔 单身18年的宝宝 💔</div>
+        </div>
+    </div>
+
+    <!-- 原来的答题部分改为弹窗触发按钮 -->
+    <div class="interactive-section">
+        <h2>脱单测试 🎯</h2>
+        <p>想知道你什么时候能脱单吗？点击下方按钮开始测试吧！</p>
+        <button class="open-modal-btn" onclick="openTestModal()">开始脱单测试 🎯</button>
+    </div>
+
+    <!-- 颁奖环节 -->
+    <div class="award-section">
+        <h2 class="award-title">🏆 2025年度单身狗颁奖典礼 🏆</h2>
+
+        <div class="award-category">
+            <h3>🏅 最佳单身坚持奖 🏅</h3>
+            <div class="award-winner">单萌同学！🎉</div>
+            <p>连续18年保持单身，从未动摇！这份坚持，值得我们所有人学习！</p>
+        </div>
+
+        <div class="award-category">
+            <h3>🎮 最宅单身奖 🎮</h3>
+            <div class="award-winner">还是单萌同学！🎉</div>
+            <p>年度外卖订单突破1000单，足不出户就能生存，真正的"家里蹲"大师！</p>
+        </div>
+
+        <div class="award-category">
+            <h3>💔 最不可能脱单奖 💔</h3>
+            <div class="award-winner">必须是单萌同学！🎉</div>
+            <p>对恋爱的抵抗力堪称铜墙铁壁，连丘比特的箭都射不穿！</p>
+        </div>
+    </div>
+
+    <div class="interactive-section">
+        <h2>幸运抽奖 🎁</h2>
+        <p>单身狗也有春天！点击下方按钮领取你的"脱单大礼包"！</p>
+        <button id="claimButton" class="lucky-button" onclick="claimGift()">领取脱单大礼包 🎁</button>
+
+        <div id="prizeBox" class="prize-box">
+            <h3>恭喜你！🎉</h3>
+            <div class="prize-content">
+                <p id="luckyResult">你获得了：「明年继续单身」大礼包！</p>
+                <p>别灰心，至少你还有我这样的朋友！</p>
+            </div>
+            <button class="lucky-button" onclick="hidePrize()">再试一次！</button>
+        </div>
+    </div>
+
+    <!-- 视频播放区域 -->
+    <div id="videoSection" class="video-section">
+        <div class="video-container">
+            <!-- 使用示例视频，实际使用时请替换为真实视频路径 -->
+            <video controls autoplay>
+                <source src="单萌/1.mp4" type="video/mp4">
+                您的浏览器不支持HTML5视频播放。
+            </video>
+            <div class="video-caption">🎥 单萌的单身生活纪录片</div>
+        </div>
+    </div>
+
+    <!-- 单身调侃区域 -->
+    <div id="teaseSection" class="tease-section">
+        <h3>😂 致亲爱的单身朋友们 😂</h3>
+        <div class="tease-content">
+            <p>看完单萌的故事，是不是感觉自己的单身生活其实还不错？</p>
+            <p>不过没关系，单身只是人生的一个阶段，说不定明天你就遇到真爱了呢！</p>
+            <p>（温馨提示：如果明年还单身，我还会在这里等你哦！）</p>
+            <p style="margin-top: 30px; font-weight: bold; color: #ff4d4f;">祝所有单身贵族们光棍节快乐！💔🎉</p>
+        </div>
+    </div>
+
+    <h2>单身狗宣言 🗣️</h2>
+    <div class="joke-section">
+        <p>作为光荣的单身狗，我们郑重宣言：</p>
+        <p>• 单身不是狗，恋爱不是猫，我们只是选择了不同的生活方式！</p>
+        <p>• 一个人吃火锅，一个人看电影，一个人逛街，这都不是事！</p>
+        <p>• 双十一不用给别人买礼物，我的钱都归我自己！</p>
+        <p>• 想几点睡就几点睡，想和谁打游戏就和谁打游戏！</p>
+        <p>• 自由万岁！单身无罪！💪</p>
+    </div>
+</div>
+
+<!-- 答题弹窗 -->
+<div id="testModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeTestModal()">×</button>
+        <h2 style="text-align: center;">脱单测试 🎯</h2>
+        <p style="text-align: center; margin-bottom: 30px;">想知道你什么时候能脱单吗？来做个全面的测试吧！</p>
+
+        <!-- 测试问题1 -->
+        <div class="single-test">
+            <div class="test-question">1. 你觉得自己单身的主要原因是什么？</div>
+            <div class="test-options">
+                <div class="test-option" onclick="showTestResult('A', this)">A. 我太优秀了，没人配得上我</div>
+                <div class="test-option" onclick="showTestResult('B', this)">B. 缘分未到，我在等对的人</div>
+                <div class="test-option" onclick="showTestResult('C', this)">C. 我喜欢单身的自由</div>
+                <div class="test-option" onclick="showTestResult('D', this)">D. 我宅，不认识新朋友</div>
+            </div>
+        </div>
+
+        <!-- 测试问题2 -->
+        <div class="single-test">
+            <div class="test-question">2. 当朋友介绍对象给你时，你通常会？</div>
+            <div class="test-options">
+                <div class="test-option" onclick="showTestResult('E', this)">A. 欣然接受，积极赴约</div>
+                <div class="test-option" onclick="showTestResult('F', this)">B. 犹豫再三，最后还是拒绝</div>
+                <div class="test-option" onclick="showTestResult('G', this)">C. 先看照片，不符合审美就拒绝</div>
+                <div class="test-option" onclick="showTestResult('H', this)">D. 求朋友别再操心我的终身大事</div>
+            </div>
+        </div>
+
+        <!-- 测试问题3 -->
+        <div class="single-test">
+            <div class="test-question">3. 情人节/光棍节这天，你最可能在做什么？</div>
+            <div class="test-options">
+                <div class="test-option" onclick="showTestResult('I', this)">A. 在家打游戏/看剧，假装不知道今天是什么日子</div>
+                <div class="test-option" onclick="showTestResult('J', this)">B. 和同样单身的朋友一起聚会吐槽</div>
+                <div class="test-option" onclick="showTestResult('K', this)">C. 疯狂购物，安慰自己单身也能很快乐</div>
+                <div class="test-option" onclick="showTestResult('L', this)">D. 默默发誓明年一定要脱单</div>
+            </div>
+        </div>
+
+        <div id="resultBox" class="result-box">
+            <h3>测试结果</h3>
+            <div class="result-emoji">🎯</div>
+            <p id="testResult">点击选项查看你的脱单预测！</p>
+        </div>
+    </div>
+</div>
+
+<!-- 隐藏挑战按钮 -->
+<button id="hiddenChallengeButton" class="hidden-challenge-button" title="隐藏挑战"></button>
+
+<!-- 表白挑战弹窗 -->
+<div id="loveChallengeModal" class="love-challenge-modal">
+    <div class="love-challenge-content">
+        <h2>💕 隐藏挑战界面 💕</h2>
+        <p style="font-size: 18px; margin-bottom: 20px;">真没想到你尽然能找到这个界面，看来还是小瞧你了</p>
+        <p style="font-size: 18px; margin-bottom: 20px;">请发表你的成功感言吧，作者会很有动力的！</p>
+        <textarea id="loveMessage" class="love-message-input" placeholder="请输入你的内容..."></textarea>
+        <button id="submitLoveButton" class="submit-love-button">提交 💌</button>
+    </div>
+</div>
+
+<!-- 成功获得脱单奖励弹窗 -->
+<div id="loveSuccessMessage" class="love-success-message">
+    <div class="love-success-content">
+        <h2>🎉 恭喜你！ 🎉</h2>
+        <div class="success-emoji">💘</div>
+        <p>不是，你还真提交了？？？</p>
+
+        <p>看来下次得给你上强度了</p>
+        <p>我去你还真提交啊？？？</p>
+    </div>
+</div>
+
+<script>
+    // 显示单身朋友的故事
+    function showSingleStory(story) {
+        alert(story);
+    }
+
+    // 显示测试结果（扩展版）
+    function showTestResult(option, element) {
+        // 移除其他选项的选中状态
+        const options = document.querySelectorAll('.test-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+
+        // 添加当前选项的选中状态
+        element.classList.add('selected');
+
+        // 定义测试结果
+        const results = {
+            'A': '🚀 恭喜你！你的自信心爆棚！但可能需要稍微降低一点标准哦～\n\n预测结果：你将在 <strong>3年内</strong> 脱单！💘',
+            'B': '⏳ 耐心等待是美德！缘分正在路上，不要着急～\n\n预测结果：你将在 <strong>1年内</strong> 遇到对的人！💘',
+            'C': '🌈 享受单身生活也不错！不过偶尔也可以给爱情一个机会～\n\n预测结果：你将在 <strong>不确定的未来</strong> 脱单，因为你根本不想！😜',
+            'D': '🏠 宅男/宅女要加油了！多出去走走，认识新朋友吧！\n\n预测结果：你将在 <strong>2年内</strong> 脱单，前提是你愿意走出家门！🚪',
+            'E': '👍 积极主动是好事！继续保持这个态度！\n\n预测结果：你将在 <strong>6个月内</strong> 脱单！💘',
+            'F': '😰 别那么紧张！给自己和别人一个机会吧～\n\n预测结果：你将在 <strong>18个月内</strong> 脱单！💘',
+            'G': '👀 外貌重要，但内心更重要哦！\n\n预测结果：你将在 <strong>1年零3个月内</strong> 脱单！💘',
+            'H': '🙅 别再拒绝机会了！朋友也是一片好意～\n\n预测结果：你将在 <strong>2年零6个月内</strong> 脱单，当你不再拒绝介绍时！💘',
+            'I': '🎮 逃避不是办法！勇敢面对现实吧！\n\n预测结果：你将在 <strong>3年内</strong> 脱单，当你愿意放下游戏时！🎮➡️💘',
+            'J': '👯 抱团取暖可以，但别忘了寻找自己的幸福哦！\n\n预测结果：你将在 <strong>9个月内</strong> 脱单，在某个单身聚会上！🎉',
+            'K': '🛍️ 购物能带来快乐，但爱情的快乐是不一样的！\n\n预测结果：你将在 <strong>1年内</strong> 脱单，当快递小哥不再是你最想见的人时！📦➡️💘',
+            'L': '💪 有志者事竟成！但光发誓是不够的，要行动起来！\n\n预测结果：你将在 <strong>明年的今天</strong> 脱单，如果你真的努力的话！💪💘'
+        };
+
+        // 显示结果
+        const resultBox = document.getElementById('resultBox');
+        const testResult = document.getElementById('testResult');
+
+        testResult.innerHTML = results[option];
+        resultBox.style.display = 'block';
+    }
+
+    // 打开测试弹窗
+    function openTestModal() {
+        const modal = document.getElementById('testModal');
+        modal.style.display = 'flex';
+
+        // 重置测试状态
+        const options = document.querySelectorAll('.test-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'none';
+    }
+
+    // 关闭测试弹窗
+    function closeTestModal() {
+        const modal = document.getElementById('testModal');
+        modal.style.display = 'none';
+    }
+
+    // 点击弹窗外部关闭弹窗
+    document.getElementById('testModal').addEventListener('click', function(event) {
+        if (event.target === this) {
+            closeTestModal();
+        }
+    });
+
+    // 领取礼物
+    function claimGift() {
+        const prizeBox = document.getElementById('prizeBox');
+        const luckyResult = document.getElementById('luckyResult');
+        const videoSection = document.getElementById('videoSection');
+        const teaseSection = document.getElementById('teaseSection');
+        const button = document.getElementById('claimButton');
+        const container = document.querySelector('.container');
+
+        // 各种有趣的礼物，增加更多恶作剧元素
+        const gifts = [
+            '「明年继续单身」大礼包！🎉\n\n内含：\n- 单身贵族证书一张\n- 外卖优惠券100张\n- 游戏皮肤折扣券\n- 孤独星球会员卡',
+            '「脱单预备役」大礼包！🎉\n\n内含：\n- 恋爱技巧手册\n- 社交场合生存指南\n- 约会服装搭配建议\n- 自信提升课程',
+            '「缘分未到」安慰包！🎉\n\n内含：\n- 心灵鸡汤30碗\n- 催泪电影合集\n- 单身快乐歌单\n- 未来对象的"寻人启事"',
+            '「桃花朵朵开」大礼包！🎉\n\n内含：\n- 桃花运提升符咒\n- 社交APP会员月卡\n- 魅力提升指南\n- 搭讪开场白100句',
+            '「单身贵族」专属礼包！🎉\n\n内含：\n- 自由勋章一枚\n- 个人时间管理术\n- 独处指南\n- "我单身我骄傲"T恤一件',
+            '「恭喜脱单」空欢喜礼包！🎉\n\n内含：\n- 空气一瓶\n- 幻想一段\n- 梦醒时分\n- 明年再来优惠券',
+            '「狗粮品鉴师」认证！🎉\n\n恭喜你获得「专业狗粮品鉴师」资格证书！\n可以免费品尝朋友圈所有秀恩爱内容！',
+            '「孤寡青蛙」陪伴服务！🎉\n\n获得孤寡青蛙7天陪伴服务，\n每天准时为你送上"孤寡孤寡"的问候！'
+        ];
+
+        // 随机选择一个礼物
+        const randomGift = gifts[Math.floor(Math.random() * gifts.length)];
+        luckyResult.innerText = '你获得了：\n' + randomGift;
+
+        // 增加按钮移动的恶作剧效果
+        button.classList.add('teasing');
+
+        // 让按钮变得更难点击 - 随机改变位置
+        const maxX = container.offsetWidth - button.offsetWidth - 40;
+        const maxY = container.offsetHeight - button.offsetHeight - 40;
+
+        // 添加更多的移动模式，让按钮更难抓
+        function moveButton() {
+            if (button.style.display !== 'none') {
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+
+                // 平滑过渡到新位置
+                button.style.transition = 'all 0.5s ease-in-out';
+                button.style.position = 'absolute';
+                button.style.left = randomX + 'px';
+                button.style.top = randomY + 'px';
+
+                // 改变按钮文字增加恶作剧效果
+                const teaseTexts = ['抓到我啊！😝', '来呀来呀～🤪', '你追不上我！🏃', '就不让你点到！😜', '手速太慢啦！⚡'];
+                button.innerText = teaseTexts[Math.floor(Math.random() * teaseTexts.length)];
+
+                // 继续随机移动
+                setTimeout(moveButton, 1000);
+            }
+        }
+
+        // 开始移动按钮
+        moveButton();
+
+        // 创建随机恶作剧元素
+        createMischiefElements();
+
+        // 延迟显示结果和庆祝特效，增加期待感
+        setTimeout(() => {
+            // 显示结果和庆祝特效
+            prizeBox.style.display = 'block';
+            createConfetti();
+
+            // 隐藏移动的按钮
+            button.style.display = 'none';
+
+            // 延迟显示视频和调侃区域
+            setTimeout(() => {
+                videoSection.style.display = 'block';
+                setTimeout(() => {
+                    teaseSection.style.display = 'block';
+                }, 2000);
+            }, 3000);
+        }, 3000); // 3秒后显示结果，让用户先追一会儿按钮
+    }
+
+    // 创建恶作剧元素
+    function createMischiefElements() {
+        // 清除已有的恶作剧元素
+        const existingElements = document.querySelectorAll('.mischief-element');
+        existingElements.forEach(el => el.remove());
+
+        // 创建新的恶作剧元素
+        const mischiefEmojis = ['🐶', '💔', '👻', '😜', '🤪', '🎃', '👾'];
+        const count = Math.floor(Math.random() * 5) + 3; // 3-7个元素
+
+        for (let i = 0; i < count; i++) {
+            const element = document.createElement('div');
+            element.className = 'mischief-element';
+            element.textContent = mischiefEmojis[Math.floor(Math.random() * mischiefEmojis.length)];
+            element.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            element.style.left = (Math.random() * 80 + 10) + 'vw';
+            element.style.top = (Math.random() * 60 + 20) + 'vh';
+            element.style.opacity = Math.random() * 0.5 + 0.5;
+
+            // 每个元素有不同的动画延迟
+            element.style.animationDelay = (Math.random() * 2) + 's';
+
+            document.body.appendChild(element);
+        }
+    }
+
+    // 隐藏奖品盒子
+    function hidePrize() {
+        const prizeBox = document.getElementById('prizeBox');
+        const videoSection = document.getElementById('videoSection');
+        const teaseSection = document.getElementById('teaseSection');
+        const button = document.getElementById('claimButton');
+
+        // 清除恶作剧元素
+        const mischiefElements = document.querySelectorAll('.mischief-element');
+        mischiefElements.forEach(el => el.remove());
+
+        // 重置按钮
+        button.style.display = 'block';
+        button.style.position = 'relative';
+        button.style.left = 'auto';
+        button.style.top = 'auto';
+        button.style.transition = 'none';
+        button.classList.remove('teasing');
+        button.innerText = '领取脱单大礼包 🎁';
+
+        // 隐藏其他元素
+        prizeBox.style.display = 'none';
+        videoSection.style.display = 'none';
+        teaseSection.style.display = 'none';
+
+        // 暂停视频
+        const video = document.querySelector('video');
+        if (video) {
+            video.pause();
+        }
+    }
+
+    // 创建庆祝彩屑特效（增强版）
+    function createConfetti() {
+        const confetti = document.getElementById('confetti');
+        confetti.style.display = 'block';
+        confetti.innerHTML = '';
+
+        const colors = ['#ff4d4f', '#faad14', '#52c41a', '#1890ff', '#722ed1', '#eb2f96'];
+        const shapes = ['circle', 'square', 'triangle'];
+
+        for (let i = 0; i < 300; i++) { // 增加更多彩屑
+            const particle = document.createElement('div');
+            const size = Math.random() * 10 + 5;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+            particle.style.position = 'absolute';
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.backgroundColor = color;
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = '-20px';
+            particle.style.opacity = Math.random() * 0.7 + 0.3;
+
+            // 根据形状设置样式
+            if (shape === 'circle') {
+                particle.style.borderRadius = '50%';
+            } else if (shape === 'triangle') {
+                particle.style.width = '0';
+                particle.style.height = '0';
+                particle.style.backgroundColor = 'transparent';
+                particle.style.borderLeft = size/2 + 'px solid transparent';
+                particle.style.borderRight = size/2 + 'px solid transparent';
+                particle.style.borderBottom = size + 'px solid ' + color;
+            }
+
+            // 添加动画
+            const duration = Math.random() * 3 + 2;
+            const delay = Math.random() * 2;
+            const horizontal = (Math.random() - 0.5) * 150;
+
+            particle.style.animation = `fall ${duration}s ease-in-out ${delay}s forwards`;
+            particle.style.transform = `translateX(${horizontal}px)`;
+
+            // 添加旋转效果
+            const rotation = Math.random() * 360;
+            const rotationDuration = Math.random() * 5 + 3;
+            particle.style.animation += `, spinSlow ${rotationDuration}s linear ${delay}s infinite`;
+            particle.style.transform += `, rotate(${rotation}deg)`;
+
+            confetti.appendChild(particle);
+        }
+
+        // 添加CSS动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+            @keyframes spinSlow {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 8秒后清除彩屑（延长效果时间）
+        setTimeout(() => {
+            confetti.style.display = 'none';
+        }, 8000);
+    }
+
+    // 页面加载时的小惊喜
+    window.addEventListener('load', () => {
+        // 随机在页面上显示一些小玩笑
+        const jokes = [
+            "偷偷告诉你：今天是脱单的黄道吉日哦！😉",
+            "警告：你的朋友圈可能会被秀恩爱的照片刷屏！请做好心理准备！⚠️",
+            "恭喜：你已被选为「年度最佳单身狗」候选人！🏆",
+            "提示：今天购物车的东西，要自己买单哦！💰",
+            "好消息：距离明年光棍节还有364天！🎉",
+            "温馨提示：点击页面上的任何元素，可能会有惊喜哦！✨",
+            "注意：本页面含有大量单身狗专属幽默，恋爱中的人请在单身朋友陪同下浏览！🐶",
+            "惊喜预告：3秒后将会有神秘事件发生！🔮"
+        ];
+
+        const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+        setTimeout(() => {
+            alert(randomJoke);
+        }, 3000);
+    });
+
+    // 隐藏挑战相关函数
+    // 显示表白挑战弹窗
+    function showLoveChallenge() {
+        const modal = document.getElementById('loveChallengeModal');
+        modal.style.display = 'flex';
+        // 清空之前的输入
+        document.getElementById('loveMessage').value = '';
+    }
+
+    // 隐藏表白挑战弹窗
+    function hideLoveChallenge() {
+        const modal = document.getElementById('loveChallengeModal');
+        modal.style.display = 'none';
+    }
+
+    // 提交表白，显示成功消息
+    function submitLoveMessage() {
+        const message = document.getElementById('loveMessage').value.trim();
+
+        // 简单验证：必须输入内容
+        if (message) {
+            // 隐藏挑战弹窗
+            hideLoveChallenge();
+
+            // 显示成功消息
+            const successMessage = document.getElementById('loveSuccessMessage');
+            successMessage.style.display = 'flex';
+
+            // 创建庆祝彩屑
+            createConfetti();
+
+            // 10秒后自动关闭成功消息
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 10000);
+        } else {
+            alert('请输入你的表白内容！');
+        }
+    }
+
+    // 绑定隐藏挑战按钮事件
+    document.getElementById('hiddenChallengeButton').addEventListener('click', showLoveChallenge);
+
+    // 绑定表白提交按钮事件
+    document.getElementById('submitLoveButton').addEventListener('click', submitLoveMessage);
+
+    // 点击弹窗外部关闭弹窗
+    document.getElementById('loveChallengeModal').addEventListener('click', function(event) {
+        if (event.target === this) {
+            hideLoveChallenge();
+        }
+    });
+
+    document.getElementById('loveSuccessMessage').addEventListener('click', function(event) {
+        if (event.target === this) {
+            this.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>
