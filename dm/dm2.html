@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>给我亲爱的单萌 - 生日快乐</title>
+    <title>给单萌 - 生日快乐</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
 
@@ -478,20 +478,19 @@
     
     <div class="container">
         <div class="header">
-            <h1>生日快乐，我最亲爱的单萌！</h1>
+            <h1>生日快乐，单萌！</h1>
             <h2>在这个特别的日子里，我想告诉你...</h2>
         </div>
 
         <div class="message">
-            <p>亲爱的，今天是你的生日，也是我生命中最特别的一天。</p>
+            <p>今天是你的生日，也是你生命中最特别的一天。</p>
             <p>感谢上天让我遇见你，你的笑容是我每天最期待的阳光。</p>
             <p>每一个与你相处的瞬间，都像星星一样闪烁在我的记忆里。</p>
-            <p>我想告诉你，<span class="heart">❤</span> 我爱你 <span class="heart">❤</span> 直到永远</p>
+            <p>我想告诉你。。。。。</p>
+            <p>下面自行脑部吧，俺实在是编不下去了。。</p>
+            <p>千万别骂我！！！</p>
         </div>
 
-        <div class="countdown">
-            我们相爱已经 <span id="loveDays"></span> 天了
-        </div>
 
         <div class="photo-gallery" onclick="openGallery()">
             <div class="gallery-item" style="background-image: url('单萌/1.jpg'); background-size: cover;"></div>
@@ -509,7 +508,7 @@
             <div class="gift-bottom"></div>
         </div>
 
-        <button class="button" onclick="showSurprise()">点击领取我对你的爱 ❤</button>
+        <button class="button" onclick="showSurprise()">点击领取我对你的生日礼物 ❤</button>
     </div>
 
     <div class="modal" id="modal" onclick="closeModal()">
@@ -626,10 +625,10 @@
             message.style.fontSize = '1.2rem';
             message.style.lineHeight = '1.8';
             message.style.color = '#57606f';
-            message.innerHTML = '亲爱的单萌：<br><br>你是我见过最美的女孩，不仅是因为你的外表，更是因为你的内心。<br>你的笑容能融化冰雪，你的善良能温暖人心。<br>谢谢你给我带来的一切美好，我会珍惜我们在一起的每一刻。<br><br>永远爱你的人';
+            message.innerHTML = '单萌：<br><br>你长的真不丑，所以不要再问我这种问题了。一定要相信自己。<br>一定要相信自己。<br>你唱歌也很好听，就是会有点跑调。<br>最后，祝你生日快乐！<br>';
             
             const closeBtn = document.createElement('button');
-            closeBtn.textContent = '我也爱你 ❤';
+            closeBtn.textContent = '生日快乐 ❤';
             closeBtn.style.marginTop = '20px';
             closeBtn.style.padding = '10px 20px';
             closeBtn.style.backgroundColor = '#ff4757';
@@ -711,7 +710,7 @@
                 surprise.style.zIndex = '1001';
                 surprise.style.transition = 'all 0.5s ease';
                 surprise.style.textShadow = '0 0 20px rgba(255, 71, 87, 0.8)';
-                surprise.textContent = '生日快乐，我的爱！';
+                surprise.textContent = '生日快乐，我的萌！';
                 document.body.appendChild(surprise);
 
                 // 显示动画
